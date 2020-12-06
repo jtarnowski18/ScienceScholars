@@ -1,0 +1,50 @@
+
+Below I have attached the code for the graphs I have in my paper (Kodak Plots are in the Kodak R file)
+```{r}
+require(plotly)
+require(tidyverse)
+#Summary Data Frame Including avg sentiment scores
+load("D:/Summer Fellows/Phase 2/SummaryFrame.Rdata")
+```
+
+#Avg Sentiments Before and After
+```{r}
+{
+fig <- plot_ly(alpha = 0.6)
+fig <- fig %>% add_histogram(x = ~Final_Frame$Sentiment_Before, name = "Before")
+fig <- fig %>% add_histogram(x = ~Final_Frame$Sentiment_After, name = "After")
+fig <- fig %>% layout(barmode = "overlay")
+Before_After <- fig %>%layout(title = 'Tweet Sentiments Before vs. After Price Change',
+         xaxis = list(title = list(text = "Sentiment")),
+         yaxis = list(title = list(text = "Frequency")))
+Before_After
+}
+```
+# Avg Sentiments Before and After without Zeros
+```{r}
+
+{
+fig <- plot_ly(alpha = 0.6)
+fig <- fig %>% add_histogram(x = ~Final_Frame$Sentiment_Before_None, name = "Before")
+fig <- fig %>% add_histogram(x = ~Final_Frame$Sentiment_After_None, name = "After")
+fig <- fig %>% layout(barmode = "overlay")
+Before_After0 <- fig %>%layout(title = 'Tweet Sentiments Before vs. After Price Change (Without Zeros)',
+         xaxis = list(title = list(text = "Sentiment")),
+         yaxis = list(title = list(text = "Frequency")))
+Before_After0
+}
+```
+#Percentage of non zero scores
+```{r}
+{
+fig <- plot_ly(alpha = 0.6)
+fig <- fig %>% add_histogram(x = ~Final_Frame$Non_Zero_Before, name = "Before")
+fig <- fig %>% add_histogram(x = ~Final_Frame$Non_Zero_After, name = "After")
+fig <- fig %>% layout(barmode = "overlay")
+Before_After_perc <- fig %>%layout(title = 'Percentage of Tweets that are Nonzero Before vs. After Price Change',
+         xaxis = list(title = list(text = "Percentage")),
+         yaxis = list(title = list(text = "Frequency")))
+Before_After_perc
+}
+```
+
